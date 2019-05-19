@@ -13,7 +13,7 @@ class Fourier_Estimator:
     def fit(self,j,data):
         self.min_x = data.min()
         self.max_x = data.max()
-        fourier_data = pd.Series(range(30)).apply(lambda j: self.cos_fun(j,data,self.min_x,self.max_x))
+        fourier_data = pd.Series(range(j)).apply(lambda i: self.cos_fun(i,data,self.min_x,self.max_x))
 
         fourier_coef = fourier_data.mean(axis = 1)
         fourier_coef.iloc[0] = 1
@@ -55,3 +55,4 @@ class Fourier_Estimator:
             return 1/(max_x-min_x)
         else:
             return sympy.sqrt(2/(max_x-min_x))*sympy.cos(pi*j*x/(max_x-min_x))   
+    
